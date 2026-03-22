@@ -10,7 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import pl.mateusz.redosz.userservice.enums.UserRole;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,8 +23,6 @@ public class UserEntity implements UserDetails {
     @Indexed(unique = true)
     private String username;
     private String password;
-    @Builder.Default
-    private List<String> shoppingListsIds = new ArrayList<>();
 
     @Builder.Default
     private UserRole userRole = UserRole.ROLE_USER;
