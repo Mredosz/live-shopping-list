@@ -12,5 +12,7 @@ jwt:
   token-name: JWT_token
   token-expiration: 604800000
   one-day-in-ms: 86400000
+  key: my-super-super-secret-key-which-is-very-long-1234
+
 url:
   logout-url: http://localhost:5173/

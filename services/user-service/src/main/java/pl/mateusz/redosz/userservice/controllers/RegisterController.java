@@ -10,7 +10,7 @@ import pl.mateusz.redosz.userservice.dtos.UserRegisterDto;
 import pl.mateusz.redosz.userservice.exceptions.UsernameTakenException;
 import pl.mateusz.redosz.userservice.services.RegisterService;
 
-@RequestMapping("/register")
+@RequestMapping("/auth/register")
 @RestController
 @RequiredArgsConstructor
 public class RegisterController {

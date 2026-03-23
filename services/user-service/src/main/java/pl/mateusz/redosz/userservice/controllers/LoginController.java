@@ -11,7 +11,7 @@ import pl.mateusz.redosz.userservice.dtos.UserLoginDto;
 import pl.mateusz.redosz.userservice.exceptions.InvalidCredentialsException;
 import pl.mateusz.redosz.userservice.services.LoginService;
 
-@RequestMapping("/login")
+@RequestMapping("/auth/login")
 @RestController
 @RequiredArgsConstructor
 public class LoginController {

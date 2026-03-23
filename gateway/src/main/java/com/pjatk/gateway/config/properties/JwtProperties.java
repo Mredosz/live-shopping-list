@@ -1,4 +1,4 @@
-package pl.mateusz.redosz.userservice.config.properties;
+package com.pjatk.gateway.config.properties;
 
 import io.jsonwebtoken.security.Keys;
 import lombok.Data;
@@ -12,10 +12,6 @@ import javax.crypto.SecretKey;
 @ConfigurationProperties(prefix = "jwt")
 public class JwtProperties {
     private String key;
-    private int tokenCookieExpiration;
-    private String tokenName;
-    private long tokenExpiration;
-    private long oneDayInMs;
 
     public SecretKey getKey() {
         return Keys.hmacShaKeyFor(key.getBytes());
