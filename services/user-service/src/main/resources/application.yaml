@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: user-service
+  mongodb:
+    uri: mongodb://localhost:27017/users
+
+server:
+  port: 8082
+
+jwt:
+  token-cookie-expiration: 604800
+  token-name: JWT_token
+  token-expiration: 604800000
+  one-day-in-ms: 86400000
+url:
+  logout-url: http://localhost:5173/

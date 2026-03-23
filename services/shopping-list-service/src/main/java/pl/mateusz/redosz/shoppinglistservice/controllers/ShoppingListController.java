@@ -7,7 +7,7 @@ import pl.mateusz.redosz.shoppinglistservice.services.ShoppingListService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("shoppings/lists")
+@RequestMapping("/shoppings/lists")
 public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;
