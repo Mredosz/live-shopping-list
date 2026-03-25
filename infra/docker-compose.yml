@@ -31,6 +31,16 @@ services:
     ports:
       - "8080:8080"
 
+  frontend:
+    build: ../frontend
+    depends_on:
+      - gateway
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../frontend:/app
+      - /app/node_modules
+
 volumes:
   user-mongo-data:
   shopping-list-mongo-data:
