@@ -12,13 +12,13 @@ public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;
 
-    @GetMapping("/{userId}")
+    @GetMapping
     public ShoppingListPageDto getUserLists(
-            @PathVariable String userId,
+            @RequestHeader("X-User-Id") String username,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        return shoppingListService.getUserAllShoppingList(userId, page, size);
+        return shoppingListService.getUserAllShoppingList(username, page, size);
     }
 
     @PostMapping
@@ -40,8 +40,8 @@ public class ShoppingListController {
         shoppingListService.changeShoppingItemStatus(listId, itemName, statusDto);
     }
 
-    @PostMapping("/{listId}/participants/{userId}")
-    public void addParticipant(@PathVariable String listId, @PathVariable String userId) {
-        shoppingListService.addNewParticipantToList(listId, userId);
+    @PostMapping("/{listId}/participants")
+    public void addParticipant(@PathVariable String listId, @RequestHeader("X-User-Id") String username) {
+        shoppingListService.addNewParticipantToList(listId, username);
     }
 }

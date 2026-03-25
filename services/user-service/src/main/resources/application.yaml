@@ -2,10 +2,10 @@ spring:
   application:
     name: user-service
   mongodb:
-    uri: mongodb://localhost:27017/users
+    uri: mongodb://user-mongo:27017/users
 
 server:
-  port: 8082
+  port: 8080
 
 jwt:
   token-cookie-expiration: 604800

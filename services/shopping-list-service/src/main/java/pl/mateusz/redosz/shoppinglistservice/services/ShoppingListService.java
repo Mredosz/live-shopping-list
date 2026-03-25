@@ -18,36 +18,36 @@ import pl.mateusz.redosz.shoppinglistservice.repositories.ShoppingListRepository
 public class ShoppingListService {
     private final ShoppingListRepository shoppingListRepository;
 
-    public ShoppingListPageDto getUserAllShoppingList(String id, int page, int size){
+    public ShoppingListPageDto getUserAllShoppingList(String username, int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
 
-        var slice = shoppingListRepository.findByParticipantIdsContains(id, pageable);
+        var slice = shoppingListRepository.findByParticipantUsernamesContains(username, pageable);
         var mapped = slice.getContent().stream().map(ShoppingListMapper::toDto).toList();
 
         return new ShoppingListPageDto(mapped, slice.hasNext());
     }
 
-    public void addItemToList(String id, ShoppingItemFormDto itemFormDto){
-        var list = shoppingListRepository.findById(id).orElseThrow();
+    public void addItemToList(String listId, ShoppingItemFormDto itemFormDto) {
+        var list = shoppingListRepository.findById(listId).orElseThrow();
         var mappedItem = ShoppingListMapper.toEmbedded(itemFormDto);
 
         list.addItem(mappedItem);
         shoppingListRepository.save(list);
     }
 
-    public void addNewParticipantToList(String listId, String participantId){
+    public void addNewParticipantToList(String listId, String username) {
         var list = shoppingListRepository.findById(listId).orElseThrow();
 
-        list.addParticipant(participantId);
+        list.addParticipant(username);
         shoppingListRepository.save(list);
     }
 
-    public void createShoppingList(ShoppingListFormDto formDto){
+    public void createShoppingList(ShoppingListFormDto formDto) {
         var mappedList = ShoppingListMapper.toEntity(formDto);
         shoppingListRepository.save(mappedList);
     }
 
-    public void changeShoppingItemStatus(String listId, String itemName,UpdateShoppingItemStatusDto statusDto){
+    public void changeShoppingItemStatus(String listId, String itemName, UpdateShoppingItemStatusDto statusDto) {
         var list = shoppingListRepository.findById(listId).orElseThrow();
 
         list.getItems().stream()

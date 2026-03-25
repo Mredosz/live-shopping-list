@@ -7,5 +7,5 @@ import pl.mateusz.redosz.shoppinglistservice.entities.ShoppingList;
 
 
 public interface ShoppingListRepository extends MongoRepository<ShoppingList, String> {
-    Slice<ShoppingList> findByParticipantIdsContains(String userId, Pageable pageable);
+    Slice<ShoppingList> findByParticipantUsernamesContains(String username, Pageable pageable);
 }

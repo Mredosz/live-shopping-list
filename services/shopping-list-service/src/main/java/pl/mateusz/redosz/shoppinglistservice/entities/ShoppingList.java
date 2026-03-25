@@ -23,13 +23,13 @@ public class ShoppingList {
     @Builder.Default
     private List<ShoppingItem> items = new ArrayList<>();
     @Builder.Default
-    private List<String> participantIds = new ArrayList<>();
+    private List<String> participantUsernames = new ArrayList<>();
 
     public void addItem(ShoppingItem item) {
         items.add(item);
     }
 
     public void addParticipant(String id) {
-        participantIds.add(id);
+        participantUsernames.add(id);
     }
 }

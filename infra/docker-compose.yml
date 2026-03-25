@@ -13,6 +13,24 @@ services:
     volumes:
       - shopping-list-mongo-data:/data/db
 
+  user-service:
+    build: ../services/user-service
+    depends_on:
+      - user-mongo
+
+  shopping-list-service:
+    build: ../services/shopping-list-service
+    depends_on:
+      - shopping-list-mongo
+
+  gateway:
+    build: ../gateway
+    depends_on:
+      - shopping-list-service
+      - user-service
+    ports:
+      - "8080:8080"
+
 volumes:
   user-mongo-data:
   shopping-list-mongo-data:

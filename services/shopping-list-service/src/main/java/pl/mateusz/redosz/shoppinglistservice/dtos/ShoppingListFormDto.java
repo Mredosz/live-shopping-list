@@ -6,5 +6,5 @@ import java.util.List;
 
 @Builder
 public record ShoppingListFormDto(String title,
-                                  List<String> participantIds) {
+                                  List<String> participantUsernames) {
 }

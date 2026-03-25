@@ -38,7 +38,7 @@ public class ShoppingListMapper {
     public static ShoppingList toEntity(ShoppingListFormDto dto){
         return ShoppingList.builder()
                 .title(dto.title())
-                .participantIds(dto.participantIds())
+                .participantUsernames(dto.participantUsernames())
                 .build();
     }
 }
