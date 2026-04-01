@@ -14,7 +14,18 @@ export class AuthService {
         password,
       })
       .subscribe({
-        next: (res) => console.log('OK', res),
+        error: (err) => console.error('Błąd', err),
+      });
+  }
+
+  register(username: string, password: string, confirmPassword: string) {
+    this.httpClient
+      .post('http://localhost:8080/auth/register', {
+        username,
+        password,
+        confirmPassword,
+      })
+      .subscribe({
         error: (err) => console.error('Błąd', err),
       });
   }
