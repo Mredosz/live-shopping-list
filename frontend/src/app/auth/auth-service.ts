@@ -9,10 +9,16 @@ export class AuthService {
 
   login(username: string, password: string) {
     this.httpClient
-      .post('http://localhost:8080/auth/login', {
-        username,
-        password,
-      })
+      .post(
+        'http://localhost:8080/auth/login',
+        {
+          username,
+          password,
+        },
+        {
+          withCredentials: true,
+        },
+      )
       .subscribe({
         error: (err) => console.error('Błąd', err),
       });
@@ -20,11 +26,17 @@ export class AuthService {
 
   register(username: string, password: string, confirmPassword: string) {
     this.httpClient
-      .post('http://localhost:8080/auth/register', {
-        username,
-        password,
-        confirmPassword,
-      })
+      .post(
+        'http://localhost:8080/auth/register',
+        {
+          username,
+          password,
+          confirmPassword,
+        },
+        {
+          withCredentials: true,
+        },
+      )
       .subscribe({
         error: (err) => console.error('Błąd', err),
       });
