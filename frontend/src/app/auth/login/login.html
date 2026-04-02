@@ -1,31 +1,11 @@
-<div class="bg-gray-800 flex text-xl items-center justify-center w-full h-screen text-white">
-  <form
-    (ngSubmit)="onSubmit(usernameInput.value, passwordInput.value)"
-    class="bg-gray-600 rounded-2xl gap-y-4 shadow-md flex flex-col items-center justify-center py-4 px-3"
-  >
-    <div class="flex flex-col gap-y-2">
-      <label for="username">Nazwa użytkownika</label>
-      <input
-        id="username"
-        type="text"
-        #usernameInput
-        class="border border-black rounded-md px-1 py-1.5"
-      />
-    </div>
-    <div class="flex flex-col gap-y-2">
-      <label for="password">Hasło</label>
-      <input
-        id="password"
-        type="password"
-        #passwordInput
-        class="border border-black rounded-md px-1 py-1.5"
-      />
-    </div>
-    <button
-      type="submit"
-      class="bg-green-600 rounded-md px-2 py-1.5 shadow-md hover:bg-green-700 w-full cursor-pointer"
-    >
-      Zaloguj
-    </button>
-  </form>
-</div>
+<app-container-wrapper
+  navLink="/register"
+  navLinkLabel="Nie posiadasz konta?"
+  header="Zaloguj się"
+  buttonLabel="Zaloguj"
+  (submitForm)="onSubmit()"
+>
+  @for (input of inputs; track input.id) {
+    <app-input [label]="input.label" [id]="input.id" [type]="input.type" />
+  }
+</app-container-wrapper>

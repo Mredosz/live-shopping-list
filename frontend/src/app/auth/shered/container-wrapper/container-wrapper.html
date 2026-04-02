@@ -1,0 +1,18 @@
+<div class="bg-bg text-text flex h-screen w-full items-center justify-center text-xl">
+  <form
+    (ngSubmit)="submitForm.emit()"
+    class="bg-card flex w-96 flex-col items-center justify-center gap-y-8 rounded-2xl px-8 py-5 shadow-md"
+  >
+    <h1 class="text-3xl">{{ header() }}</h1>
+    <div class="flex w-full flex-col gap-y-4"><ng-content /></div>
+    <a [routerLink]="navLink()" class="w-full text-start text-xs text-blue-400 underline">{{
+      navLinkLabel()
+    }}</a>
+    <button
+      type="submit"
+      class="bg-primary hover:bg-hover w-full cursor-pointer rounded-md px-2 py-1.5 shadow-md"
+    >
+      {{ buttonLabel() }}
+    </button>
+  </form>
+</div>

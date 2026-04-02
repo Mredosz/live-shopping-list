@@ -1,0 +1,9 @@
+<div class="flex w-full flex-col gap-y-2">
+  <label [for]="id()" class="text-lg">{{ label() }}</label>
+  <input
+    [id]="id()"
+    [type]="type()"
+    [(ngModel)]="value"
+    class="w-full rounded-md border border-black px-2 py-1.5 text-base ring-0 outline-0"
+  />
+</div>

@@ -41,4 +41,14 @@ export class AuthService {
         error: (err) => console.error('Błąd', err),
       });
   }
+
+  logout() {
+    this.httpClient
+      .get('http://localhost:8080/auth/logout', {
+        withCredentials: true,
+      })
+      .subscribe({
+        error: (err) => console.error('Błąd', err),
+      });
+  }
 }

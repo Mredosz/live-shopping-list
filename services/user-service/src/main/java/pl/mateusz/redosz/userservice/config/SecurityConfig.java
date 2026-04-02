@@ -15,7 +15,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfigurationSource;
 import pl.mateusz.redosz.userservice.config.properties.JwtProperties;
 import pl.mateusz.redosz.userservice.config.properties.UrlsProperties;
 
@@ -30,14 +29,14 @@ public class SecurityConfig {
 
     @Bean
     @Order(1)
-    public SecurityFilterChain publicSecurityFilterChain(HttpSecurity http, JwtProperties jwtProperties, CorsConfigurationSource corsConfigurationSource) {
+    public SecurityFilterChain publicSecurityFilterChain(HttpSecurity http, JwtProperties jwtProperties) {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
+                        .logoutUrl("/auth/logout")
                         .logoutSuccessUrl(urlsProperties.getLogoutUrl())
                         .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200))
                         .invalidateHttpSession(true)

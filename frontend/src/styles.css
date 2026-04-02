@@ -1,3 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  --color-bg: #0f0f10;       /* główne tło aplikacji */
+  --color-card: #1f1f1f;     /* karty/listy */
+  --color-primary: #3b82f6;  /* przyciski, akcenty */
+  --color-secondary: #10b981; /* zaznaczone elementy lub ikony */
+  --color-text: #e5e5e5;     /* główny tekst */
+  --color-muted: #9ca3af;    /* tekst pomocniczy */
+  --color-danger: #ef4444;   /* usuwanie elementów */
+  --color-hover: #1e40af;    /* hover dla przycisków/kart */
+  --color-bgSoft: #1b1c1d;
+  --color-bgMuted: #323539;
+  --color-border: #939394;
+}
