@@ -1,5 +1,10 @@
-<ul>
-  @for (list of lists().items; track list.id) {
-    <app-list [list]="list" />
-  }
-</ul>
+<div class="flex w-full flex-col items-center gap-y-10">
+  <h1 class="text-center text-3xl">Listy zakupów</h1>
+  <ul class="flex w-full flex-col gap-y-5 px-5">
+    @for (list of lists().items; track list.id) {
+      <li class="bg-card w-full rounded-md px-3 py-2 shadow-md shadow-black/30">
+        <app-list [list]="list" />
+      </li>
+    }
+  </ul>
+</div>

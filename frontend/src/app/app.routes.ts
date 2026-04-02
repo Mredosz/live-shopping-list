@@ -3,6 +3,7 @@ import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
 import { Lists } from './shopping-list/lists/lists';
 import { Layout } from './layout/layout/layout';
+import { ListDetails } from './shopping-list/lists/list/list-details/list-details';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -21,6 +22,11 @@ export const routes: Routes = [
       {
         path: 'lists',
         component: Lists,
+        // children: [{ path: ':id', component: ListDetails }],
+      },
+      {
+        path: 'lists/:id',
+        component: ListDetails,
       },
     ],
   },

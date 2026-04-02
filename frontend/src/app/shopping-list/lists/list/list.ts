@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { ShoppingListDto } from '../lists-type';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,4 +10,10 @@ import { ShoppingListDto } from '../lists-type';
 })
 export class List {
   list = input.required<ShoppingListDto>();
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
+  navigate() {
+    this.router.navigate([this.list().id], { relativeTo: this.route });
+  }
 }
