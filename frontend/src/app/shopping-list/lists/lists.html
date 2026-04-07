@@ -51,7 +51,7 @@
         class="bg-bgSoft/50 border-border/20 rounded-3xl border-2 border-dashed p-10 text-center"
       >
         <p class="text-muted text-lg italic">Nie masz jeszcze żadnych list.</p>
-        <button class="text-primary mt-2 font-bold hover:underline">
+        <button (click)="toggleModal()" class="text-primary mt-2 font-bold hover:underline">
           Kliknij tutaj, aby zacząć
         </button>
       </div>
@@ -59,16 +59,8 @@
   </ul>
 
   @if (isOpen()) {
-    <div
-      (click)="closeModal()"
-      class="bg-bg/80 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-    >
-      <div
-        (click)="$event.stopPropagation()"
-        class="bg-card border-border z-60 w-full max-w-md rounded-2xl border p-6 shadow-2xl shadow-black"
-      >
-        <app-list-create-form (closeForm)="close()" />
-      </div>
-    </div>
+    <app-modal (closeModal)="closeModal()">
+      <app-list-create-form (closeForm)="close()" />
+    </app-modal>
   }
 </div>

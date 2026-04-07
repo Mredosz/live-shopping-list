@@ -54,4 +54,14 @@ export class ListsService {
       },
     );
   }
+
+  addParticipant(listId: string, username: string) {
+    return this.httpClient.patch<void>(
+      `http://localhost:8080/shoppings/lists/${listId}/participants`,
+      { username },
+      {
+        withCredentials: true,
+      },
+    );
+  }
 }

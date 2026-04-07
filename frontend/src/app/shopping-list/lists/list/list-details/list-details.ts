@@ -3,36 +3,42 @@ import { ListsService } from '../../lists-service';
 import { ShoppingListDetailsDto } from '../../lists-type';
 import { ListItem } from '../list-item/list-item';
 import { AddListItem } from '../add-list-item/add-list-item';
+import { Modal } from '../../../../shared/modal/modal';
+import { ListAddParticipantForm } from '../list-add-participant-form/list-add-participant-form';
+
+type ModalState = 'NONE' | 'ADD_ITEM' | 'ADD_PARTICIPANT';
 
 @Component({
   selector: 'app-list-details',
-  imports: [ListItem, AddListItem],
+  imports: [ListItem, AddListItem, Modal, ListAddParticipantForm],
   templateUrl: './list-details.html',
-  styles: ``,
+  standalone: true,
 })
 export class ListDetails implements OnInit {
   private readonly listsService = inject(ListsService);
   id = input.required<string>();
   list = signal<ShoppingListDetailsDto>({ createdAt: '', id: '', items: [], title: '' });
 
-  isOpen = signal(false);
+  activeModal = signal<ModalState>('NONE');
 
   ngOnInit(): void {
-    this.listsService
-      .fetchListDetails(this.id())
-      .subscribe({ next: (list) => this.list.set(list) });
+    this.refresh();
   }
 
-  toggleIsOpen() {
-    this.isOpen.update((prev) => !prev);
+  openModal(type: ModalState) {
+    this.activeModal.set(type);
   }
 
   closeModal() {
-    this.isOpen.set(false);
+    this.activeModal.set('NONE');
   }
 
-  close() {
+  handleCloseAndRefresh() {
     this.closeModal();
+    this.refresh();
+  }
+
+  private refresh() {
     this.listsService
       .fetchListDetails(this.id())
       .subscribe({ next: (list) => this.list.set(list) });

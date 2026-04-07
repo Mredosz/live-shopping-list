@@ -22,7 +22,6 @@ export const routes: Routes = [
       {
         path: 'lists',
         component: Lists,
-        // children: [{ path: ':id', component: ListDetails }],
       },
       {
         path: 'lists/:id',

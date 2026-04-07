@@ -3,10 +3,11 @@ import { ListsService } from './lists-service';
 import { ShoppingListPageDto } from './lists-type';
 import { List } from './list/list';
 import { ListCreateForm } from './list/list-create-form/list-create-form';
+import { Modal } from '../../shared/modal/modal';
 
 @Component({
   selector: 'app-lists',
-  imports: [List, ListCreateForm],
+  imports: [List, ListCreateForm, Modal],
   templateUrl: './lists.html',
   standalone: true,
 })

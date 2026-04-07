@@ -1,0 +1,11 @@
+<div
+  (click)="closeModal.emit()"
+  class="bg-bg/80 animate-in fade-in fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md duration-300"
+>
+  <div
+    (click)="$event.stopPropagation()"
+    class="bg-card border-border/20 animate-in zoom-in-95 w-full max-w-md rounded-3xl border p-8 shadow-2xl"
+  >
+    <ng-content />
+  </div>
+</div>

@@ -1,14 +1,40 @@
 <div class="bg-bg flex min-h-screen flex-col gap-y-6 px-6 py-4">
-  <div class="border-border/20 flex items-center justify-between border-b pb-4">
-    <h1 class="text-text text-3xl font-bold tracking-tight uppercase">{{ list().title }}</h1>
+  <div
+    class="border-border/20 flex flex-col justify-between gap-y-4 border-b pb-6 sm:flex-row sm:items-center"
+  >
+    <h1 class="text-text text-3xl font-black tracking-tight uppercase">{{ list().title }}</h1>
 
-    <button
-      (click)="toggleIsOpen()"
-      class="bg-primary hover:bg-hover text-text shadow-primary/20 flex items-center gap-x-2 rounded-xl px-4 py-2 font-semibold shadow-lg transition-all active:scale-95"
-    >
-      <span class="text-xl">+</span>
-      Dodaj produkt
-    </button>
+    <div class="flex items-center gap-x-3">
+      <button
+        (click)="openModal('ADD_PARTICIPANT')"
+        class="bg-bgSoft hover:bg-bgMuted border-border/20 text-text flex items-center gap-x-2 rounded-xl border px-4 py-2.5 font-semibold shadow-lg shadow-black/20 transition-all active:scale-95"
+        title="Dodaj uczestnika"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="text-primary h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+          />
+        </svg>
+        <span class="hidden text-sm md:inline">Zaproś</span>
+      </button>
+
+      <button
+        (click)="openModal('ADD_ITEM')"
+        class="bg-primary hover:bg-hover text-text shadow-primary/20 flex items-center gap-x-3 rounded-xl px-5 py-2.5 font-bold shadow-lg transition-all active:scale-95"
+      >
+        <span class="text-xl leading-none">+</span>
+        <span class="text-sm tracking-wide uppercase">Produkt</span>
+      </button>
+    </div>
   </div>
 
   <ul class="flex flex-col gap-y-3">
@@ -25,17 +51,13 @@
     }
   </ul>
 
-  @if (isOpen()) {
-    <div
-      (click)="closeModal()"
-      class="bg-bg/80 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
-    >
-      <div
-        (click)="$event.stopPropagation()"
-        class="bg-card border-border w-full max-w-md rounded-2xl border p-6 shadow-2xl shadow-black"
-      >
-        <app-add-list-item [listId]="id()" (closeForm)="close()" />
-      </div>
-    </div>
+  @if (activeModal() !== 'NONE') {
+    <app-modal (closeModal)="closeModal()">
+      @if (activeModal() === 'ADD_ITEM') {
+        <app-add-list-item [listId]="id()" (closeForm)="handleCloseAndRefresh()" />
+      } @else if (activeModal() === 'ADD_PARTICIPANT') {
+        <app-list-add-participant-form [listId]="id()" (closeForm)="closeModal()" />
+      }
+    </app-modal>
   }
 </div>

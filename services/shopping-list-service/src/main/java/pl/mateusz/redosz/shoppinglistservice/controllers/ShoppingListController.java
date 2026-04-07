@@ -48,8 +48,8 @@ public class ShoppingListController {
         shoppingListService.changeShoppingItemStatus(listId, itemName, statusDto);
     }
 
-    @PostMapping("/{listId}/participants")
-    public void addParticipant(@PathVariable String listId, @RequestHeader("X-User-Id") String username) {
-        shoppingListService.addNewParticipantToList(listId, username);
+    @PatchMapping("/{listId}/participants")
+    public void addParticipant(@PathVariable String listId, @RequestBody ParticipantRequestDto request) {
+        shoppingListService.addNewParticipantToList(listId, request.username());
     }
 }
