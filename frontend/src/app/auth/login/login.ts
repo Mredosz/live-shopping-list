@@ -1,9 +1,9 @@
 import { Component, inject, viewChildren } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth-service';
-import { Input } from '../shered/input/input';
-import { ContainerWrapper } from '../shered/container-wrapper/container-wrapper';
 import { Router } from '@angular/router';
+import { Input } from '../../shared/input/input';
+import { ContainerWrapper } from '../shared/container-wrapper/container-wrapper';
 
 @Component({
   selector: 'app-login',

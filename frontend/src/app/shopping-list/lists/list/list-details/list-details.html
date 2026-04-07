@@ -1,1 +1,41 @@
-<p>list-details works!</p>
+<div class="bg-bg flex min-h-screen flex-col gap-y-6 px-6 py-4">
+  <div class="border-border/20 flex items-center justify-between border-b pb-4">
+    <h1 class="text-text text-3xl font-bold tracking-tight uppercase">{{ list().title }}</h1>
+
+    <button
+      (click)="toggleIsOpen()"
+      class="bg-primary hover:bg-hover text-text shadow-primary/20 flex items-center gap-x-2 rounded-xl px-4 py-2 font-semibold shadow-lg transition-all active:scale-95"
+    >
+      <span class="text-xl">+</span>
+      Dodaj produkt
+    </button>
+  </div>
+
+  <ul class="flex flex-col gap-y-3">
+    @for (item of list().items; track item.name) {
+      <li class="transform transition-all duration-200">
+        <app-list-item [item]="item" [listId]="id()" />
+      </li>
+    } @empty {
+      <div
+        class="bg-card/30 border-border/20 flex flex-col items-center justify-center rounded-3xl border-2 border-dashed py-20"
+      >
+        <p class="text-muted font-medium italic">Lista zakupów jest pusta</p>
+      </div>
+    }
+  </ul>
+
+  @if (isOpen()) {
+    <div
+      (click)="closeModal()"
+      class="bg-bg/80 fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+    >
+      <div
+        (click)="$event.stopPropagation()"
+        class="bg-card border-border w-full max-w-md rounded-2xl border p-6 shadow-2xl shadow-black"
+      >
+        <app-add-list-item [listId]="id()" (closeForm)="close()" />
+      </div>
+    </div>
+  }
+</div>

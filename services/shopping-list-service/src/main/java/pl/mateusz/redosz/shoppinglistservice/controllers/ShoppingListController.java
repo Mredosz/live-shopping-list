@@ -13,7 +13,7 @@ public class ShoppingListController {
     private final ShoppingListService shoppingListService;
 
     @GetMapping
-    public ShoppingListPageDto getUserLists(
+    public ShoppingListPageDto getUserAllShoppingList(
             @RequestHeader("X-User-Id") String username,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
@@ -21,9 +21,17 @@ public class ShoppingListController {
         return shoppingListService.getUserAllShoppingList(username, page, size);
     }
 
+    @GetMapping("/{listId}")
+    public ShoppingListDetailsDto getUserShoppingListDetails(
+            @RequestHeader("X-User-Id") String username,
+            @PathVariable String listId
+    ) {
+        return shoppingListService.getUserShoppingListDetails(username, listId);
+    }
+
     @PostMapping
-    public void createList(@RequestBody ShoppingListFormDto formDto) {
-        shoppingListService.createShoppingList(formDto);
+    public void createList(@RequestBody ShoppingListFormDto formDto, @RequestHeader("X-User-Id") String username) {
+        shoppingListService.createShoppingList(formDto, username);
     }
 
     @PostMapping("/{listId}/items")

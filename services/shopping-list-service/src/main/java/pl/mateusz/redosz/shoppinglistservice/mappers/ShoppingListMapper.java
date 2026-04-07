@@ -1,9 +1,6 @@
 package pl.mateusz.redosz.shoppinglistservice.mappers;
 
-import pl.mateusz.redosz.shoppinglistservice.dtos.ShoppingItemDto;
-import pl.mateusz.redosz.shoppinglistservice.dtos.ShoppingItemFormDto;
-import pl.mateusz.redosz.shoppinglistservice.dtos.ShoppingListDto;
-import pl.mateusz.redosz.shoppinglistservice.dtos.ShoppingListFormDto;
+import pl.mateusz.redosz.shoppinglistservice.dtos.*;
 import pl.mateusz.redosz.shoppinglistservice.entities.ShoppingItem;
 import pl.mateusz.redosz.shoppinglistservice.entities.ShoppingList;
 
@@ -31,7 +28,6 @@ public class ShoppingListMapper {
                 .id(list.getId())
                 .createdAt(list.getCreatedAt())
                 .title(list.getTitle())
-                .items(list.getItems().stream().map(ShoppingListMapper::toDto).toList())
                 .build();
     }
 
@@ -39,6 +35,15 @@ public class ShoppingListMapper {
         return ShoppingList.builder()
                 .title(dto.title())
                 .participantUsernames(dto.participantUsernames())
+                .build();
+    }
+
+    public static ShoppingListDetailsDto toDetailsDto(ShoppingList list){
+        return ShoppingListDetailsDto.builder()
+                .id(list.getId())
+                .createdAt(list.getCreatedAt())
+                .title(list.getTitle())
+                .items(list.getItems().stream().map(ShoppingListMapper::toDto).toList())
                 .build();
     }
 }

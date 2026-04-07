@@ -5,10 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import pl.mateusz.redosz.shoppinglistservice.dtos.ShoppingItemFormDto;
-import pl.mateusz.redosz.shoppinglistservice.dtos.ShoppingListFormDto;
-import pl.mateusz.redosz.shoppinglistservice.dtos.ShoppingListPageDto;
-import pl.mateusz.redosz.shoppinglistservice.dtos.UpdateShoppingItemStatusDto;
+import pl.mateusz.redosz.shoppinglistservice.dtos.*;
 import pl.mateusz.redosz.shoppinglistservice.mappers.ShoppingListMapper;
 import pl.mateusz.redosz.shoppinglistservice.repositories.ShoppingListRepository;
 
@@ -27,6 +24,12 @@ public class ShoppingListService {
         return new ShoppingListPageDto(mapped, slice.hasNext());
     }
 
+    public ShoppingListDetailsDto getUserShoppingListDetails(String username, String listId) {
+        var list = shoppingListRepository.findByParticipantUsernamesContainsAndId(username, listId)
+                .orElseThrow();
+        return ShoppingListMapper.toDetailsDto(list);
+    }
+
     public void addItemToList(String listId, ShoppingItemFormDto itemFormDto) {
         var list = shoppingListRepository.findById(listId).orElseThrow();
         var mappedItem = ShoppingListMapper.toEmbedded(itemFormDto);
@@ -42,8 +45,9 @@ public class ShoppingListService {
         shoppingListRepository.save(list);
     }
 
-    public void createShoppingList(ShoppingListFormDto formDto) {
+    public void createShoppingList(ShoppingListFormDto formDto, String username) {
         var mappedList = ShoppingListMapper.toEntity(formDto);
+        mappedList.addParticipant(username);
         shoppingListRepository.save(mappedList);
     }
 

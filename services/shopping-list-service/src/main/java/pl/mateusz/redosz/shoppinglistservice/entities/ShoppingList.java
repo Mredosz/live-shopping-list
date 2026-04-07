@@ -26,7 +26,13 @@ public class ShoppingList {
     private List<String> participantUsernames = new ArrayList<>();
 
     public void addItem(ShoppingItem item) {
-        items.add(item);
+        items.stream()
+                .filter(i -> i.getName().equals(item.getName()))
+                .findFirst()
+                .ifPresentOrElse(
+                        existingItem -> existingItem.setQuantity(existingItem.getQuantity() + item.getQuantity()),
+                        () -> items.add(item)
+                );
     }
 
     public void addParticipant(String id) {

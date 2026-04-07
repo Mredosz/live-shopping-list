@@ -1,13 +1,13 @@
 import { Component, inject, viewChildren } from '@angular/core';
 import { AuthService } from '../auth-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Input } from '../shered/input/input';
-import { ContainerWrapper } from '../shered/container-wrapper/container-wrapper';
 import { Router } from '@angular/router';
+import { ContainerWrapper } from '../shared/container-wrapper/container-wrapper';
+import { Input } from '../../shared/input/input';
 
 @Component({
   selector: 'app-register',
-  imports: [FormsModule, ReactiveFormsModule, Input, ContainerWrapper],
+  imports: [FormsModule, ReactiveFormsModule, Input, ContainerWrapper, ContainerWrapper, Input],
   templateUrl: './register.html',
   standalone: true,
 })

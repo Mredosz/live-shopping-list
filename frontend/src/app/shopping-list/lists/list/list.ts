@@ -1,10 +1,11 @@
 import { Component, inject, input } from '@angular/core';
 import { ShoppingListDto } from '../lists-type';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-list',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './list.html',
   standalone: true,
 })

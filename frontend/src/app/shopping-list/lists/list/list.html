@@ -1,4 +1,45 @@
-<button type="button" (click)="navigate()" class="h-full w-full">
-  <h4 class="text-lg">{{ list().title }}</h4>
-  <p>{{ list().createdAt }}</p>
+<button
+  type="button"
+  (click)="navigate()"
+  class="group/btn hover:bg-hover/5 flex w-full items-center justify-between p-5 text-left transition-colors"
+>
+  <div class="flex flex-col gap-y-1">
+    <h4 class="text-text group-hover/btn:text-primary text-xl font-bold transition-colors">
+      {{ list().title }}
+    </h4>
+
+    <div class="flex items-center gap-x-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="text-muted h-3.5 w-3.5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+        />
+      </svg>
+      <p class="text-muted text-xs font-medium tracking-wider uppercase">
+        {{ list().createdAt | date: 'dd.MM.yyyy' }}
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="bg-bgSoft group-hover/btn:bg-primary group-hover/btn:text-bg rounded-lg p-2 shadow-inner transition-all"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+    </svg>
+  </div>
 </button>

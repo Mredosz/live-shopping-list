@@ -1,0 +1,24 @@
+<form
+  (ngSubmit)="addItem()"
+  class="bg-bgSoft/50 border-border/20 flex w-full items-end gap-x-4 rounded-2xl border p-4"
+>
+  <div class="grid flex-1 grid-cols-2 gap-x-4">
+    @for (input of inputs; track input.id) {
+      <div class="flex flex-col gap-y-1">
+        <app-input
+          [label]="input.label"
+          [id]="input.id"
+          [type]="input.type"
+          class="focus-within:text-primary transition-colors"
+        />
+      </div>
+    }
+  </div>
+
+  <button
+    type="submit"
+    class="bg-secondary hover:bg-secondary/80 text-bg shadow-secondary/20 flex h-10.5 w-12 items-center justify-center rounded-xl text-xl shadow-lg transition-all active:scale-90"
+  >
+    +
+  </button>
+</form>
